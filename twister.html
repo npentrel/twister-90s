@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Twister</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		var color = ['#FF0000', '#0000FF', '#228B22', '#FFFF00'];
+		var data = ['foot_left.png', 'foot_right.png', 'hand_left.png', 'hand_right.png'];
+
+		var drawCircle = function(clr_idx){
+			var c=document.getElementById("colorCanvas");
+			var ctx=c.getContext("2d");
+			ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
+			ctx.fillStyle=color[clr_idx];
+			ctx.beginPath();
+			ctx.arc(175, 175, 150, 0, Math.PI*2, true);
+			ctx.closePath();
+			ctx.fill();
+			ctx.strokeStyle = "#FFFFFF";
+    		ctx.stroke();
+		}
+
+		var changeColor = function(){
+			var rand = Math.ceil(4*Math.random()) - 1;
+			
+			
+			animationCircle(0, rand, 0);
+		}
+
+		var drawImage = function(pic_idx){
+			var c=document.getElementById("partCanvas");
+			var ctx=c.getContext("2d");
+			ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
+			var img=new Image();
+			img.onload = function(){
+				ctx.drawImage(img,25,25);
+			};
+			img.src=data[pic_idx];
+		}
+
+		var changeSymbol = function(){
+			var rand = Math.ceil(4*Math.random()) - 1;			
+			animationImage(0, rand, 0);
+		}
+
+		var random = function(){
+			var rand1 = Math.ceil(4*Math.random()) - 1;
+			var rand2 = Math.ceil(4*Math.random()) - 1;
+
+			console.log(rand1);
+			console.log(rand2);
+
+			animationCircle(0, rand1, 0);
+			animationImage(0, rand2, 0);
+		}
+
+		var animationCircle = function(clr_idx, rand_nr, i){
+			setTimeout(function(){
+
+				if(i===15){
+					drawCircle(rand_nr);
+				} else {
+					if(clr_idx===3){
+						drawCircle(3);
+						self.animationCircle(0, rand_nr, i+1);
+					}
+					else{
+						drawCircle(clr_idx);
+						self.animationCircle(clr_idx+1, rand_nr, i+1);
+					}
+				}
+
+			}, 100);
+		}
+
+		var animationImage = function(data_idx, rand_nr, i){
+			setTimeout(function(){
+
+				if(i===15){
+					drawImage(rand_nr);
+				} else {
+					if(data_idx===3){
+						drawImage(3);
+						self.animationImage(0, rand_nr, i+1);
+					}
+					else{
+						drawImage(data_idx);
+						self.animationImage(data_idx+1, rand_nr, i+1);
+					}
+				}
+
+			}, 100);
+		}
+	</script>
+	<link href="twister.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<div id="main">
+		<div id="logo-container">
+			<img id="logo" src="twister.png" alt="Freaky 90s Twister" height="150px" width="300px">
+		</div>
+		<div id="content">
+			<canvas id="colorCanvas" width="350px" height="350px">
+				Your browser does not support HTML5 and canvas. Please change to another browser i.e. Google Chrome.
+			</canvas>
+			<canvas id="partCanvas" width="350px" height="350px">
+				Your browser does not support HTML5 and canvas. Please change to another browser i.e. Google Chrome.
+			</canvas>
+		</div>
+		<div id="button-container">
+			<a href="javascript:random();" alt="Shuffle!" class="button"><span>Shuffle!</span></a>
+		</div>
+	</div>
+
+</body>
+</html>
