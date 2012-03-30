@@ -4,6 +4,28 @@
 	<title>Twister</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+
+		window.onload = function(){
+
+			var c1=document.getElementById("colorCanvas");
+			var ctx1=c1.getContext("2d");
+			ctx1.clearRect(0,0,ctx1.canvas.width,ctx1.canvas.height)
+			var img=new Image();
+			img.onload = function(){
+				ctx1.drawImage(img,25,25);
+			};
+			img.src="questionmark.png";
+
+			var c2=document.getElementById("partCanvas");
+			var ctx2=c2.getContext("2d");
+			ctx2.clearRect(0,0,ctx2.canvas.width,ctx2.canvas.height)
+			var img=new Image();
+			img.onload = function(){
+				ctx2.drawImage(img,25,25);
+			};
+			img.src="questionmark.png";
+		}
+
 		var color = ['#FF0000', '#0000FF', '#228B22', '#FFFF00'];
 		var data = ['foot_left.png', 'foot_right.png', 'hand_left.png', 'hand_right.png'];
 
@@ -46,10 +68,6 @@
 		var random = function(){
 			var rand1 = Math.ceil(4*Math.random()) - 1;
 			var rand2 = Math.ceil(4*Math.random()) - 1;
-
-			console.log(rand1);
-			console.log(rand2);
-
 			animationCircle(0, rand1, 0);
 			animationImage(0, rand2, 0);
 		}
@@ -104,7 +122,7 @@
 			<canvas id="colorCanvas" width="350px" height="350px">
 				Your browser does not support HTML5 and canvas. Please change to another browser i.e. Google Chrome.
 			</canvas>
-			<canvas id="partCanvas" width="350px" height="350px">
+			<canvas id="partCanvas" width="350px" height="350px" onLoad="load()">
 				Your browser does not support HTML5 and canvas. Please change to another browser i.e. Google Chrome.
 			</canvas>
 		</div>
