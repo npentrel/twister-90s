@@ -70,6 +70,7 @@
 			var rand2 = Math.ceil(4*Math.random()) - 1;
 			animationCircle(0, rand1, 0);
 			animationImage(0, rand2, 0);
+			mario.play();
 		}
 
 		var animationCircle = function(clr_idx, rand_nr, i){
@@ -88,7 +89,7 @@
 					}
 				}
 
-			}, 100);
+			}, 150);
 		}
 
 		var animationImage = function(data_idx, rand_nr, i){
@@ -107,7 +108,7 @@
 					}
 				}
 
-			}, 100);
+			}, 150);
 		}
 	</script>
 	<link href="twister.css" rel="stylesheet" type="text/css">
@@ -133,6 +134,11 @@
 			<a href="http://www.codeflow.info" alt="codeflow.info" style="margin: 0px; margin-left: 670px;">
 				<img src="logo_codeflow_grey_small.png" alt="codeflow.info">
 			</a>
+		</div>
+		<div id="hidden-music" style="display: none;">
+			<audio controls="controls" id="mario">
+				<source src="mariokart.ogg" type="audio/ogg" />
+			</audio>
 		</div>
 	</div>
 
