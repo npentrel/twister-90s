@@ -23,6 +23,7 @@ window.onload = function(){
 		ctx2.drawImage(img,25,25);
 	};
 	img.src=default_img;
+	window.onkeydown = keyDown;
 }
 
 // Creates a circle in one canvas given the color as the index of the color array.
@@ -98,4 +99,10 @@ var random = function(){
 	animationCircle(0, rand1, 0);
 	animationImage(0, rand2, 0);
 	mario.play();
+}
+
+var keyDown = function(e){
+	if(e.keyCode == 38 || e.keyCode == 40){
+		random();
+	}
 }
