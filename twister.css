@@ -28,6 +28,10 @@ canvas{
 	margin-right: auto;
 }
 
+#button-container {
+	text-align: center;
+}
+
 a.button{
 	margin-left: auto;
 	margin-right: auto;
@@ -75,7 +79,7 @@ a.button:hover{
 a.button span{
 	display: block;
     line-height: 30px;
-    padding: 13px 0px 0px 17px;
+    padding: 13px 0px 0px 0px;
 }
 
 #logo-container{

@@ -2,6 +2,8 @@
 var color = ['#FF0000', '#0000FF', '#228B22', '#FFFF00'];
 var data = ['foot_left.png', 'foot_right.png', 'hand_left.png', 'hand_right.png'];
 var default_img = "questionmark.png";
+var RUN = false;
+var timeout_random;
 
 // Function to create the default images in the canvas on load.
 window.onload = function(){
@@ -94,15 +96,32 @@ var animationImage = function(data_idx, rand_nr, i){
 
 // creates two times random numbers between 0-3 and calls the animations and plays the sound.
 var random = function(){
-	var rand1 = Math.ceil(4*Math.random()) - 1;
-	var rand2 = Math.ceil(4*Math.random()) - 1;
-	animationCircle(0, rand1, 0);
-	animationImage(0, rand2, 0);
-	mario.play();
+	if (RUN) {	
+		$("#button-container > a > span").html("Stop!");
+		var rand1 = Math.ceil(4*Math.random()) - 1;
+		var rand2 = Math.ceil(4*Math.random()) - 1;
+		animationCircle(0, rand1, 0);
+		animationImage(0, rand2, 0);
+		mario.play();
+
+		timeout_random = setTimeout(function(){
+							self.random(); 
+						}, 20000);
+	} else {
+			window.clearTimeout(timeout_random);
+			$("#button-container > a > span").html("Shuffle!");
+	}
 }
 
 var keyDown = function(e){
 	if(e.keyCode == 38 || e.keyCode == 40){
 		random();
 	}
+}
+
+var randomLoop = function () {
+	RUN = !RUN;
+
+	if(RUN) 
+		random();
 }
