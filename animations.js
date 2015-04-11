@@ -106,7 +106,7 @@ var random = function(){
 
 		timeout_random = setTimeout(function(){
 							self.random(); 
-						}, 20000);
+						}, 8000);
 	} else {
 			window.clearTimeout(timeout_random);
 			$("#button-container > a > span").html("Shuffle!");
